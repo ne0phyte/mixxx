@@ -113,6 +113,8 @@ class ControllerScriptInterfaceLegacy : public QObject {
             const ControllerScriptInterfaceLegacy::Charset
                     targetCharset,
             const QString& value);
+    
+    Q_INVOKABLE void setLibrarySearch(const QString& query);
 
     bool removeScriptConnection(const ScriptConnection& conn);
     /// Execute a ScriptConnection's JS callback

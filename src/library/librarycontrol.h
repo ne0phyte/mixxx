@@ -77,6 +77,7 @@ class LibraryControl : public QObject {
     void slotLoadSelectedTrackToGroup(const QString& group, bool play);
 #endif
     void slotUpdateTrackMenuControl(bool visible);
+    void slotSetSearchQuery(const QString& query);
 
   private slots:
     void libraryWidgetDeleted();

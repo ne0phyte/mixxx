@@ -8,7 +8,9 @@
 #include "control/controlpotmeter.h"
 #include "controllers/scripting/legacy/controllerscriptenginelegacy.h"
 #include "controllers/scripting/legacy/scriptconnectionjsproxy.h"
+#include "library/libraryscriptbridge.h"
 #include "mixer/playermanager.h"
+#include "mixer/playerinfo.h"
 #include "moc_controllerscriptinterfacelegacy.cpp"
 #include "util/cmdlineargs.h"
 #include "util/fpclassify.h"
@@ -1167,4 +1169,8 @@ QByteArray ControllerScriptInterfaceLegacy::convertCharsetInternal(
         return QByteArray();
     }
     return fromUtf16(value);
+}
+
+void ControllerScriptInterfaceLegacy::setLibrarySearch(const QString& query) {
+    LibraryScriptBridge::instance().setSearchQuery(query);
 }

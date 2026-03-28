@@ -11,6 +11,7 @@
 #include "control/controlobject.h"
 #include "control/controlpushbutton.h"
 #include "library/library.h"
+#include "library/libraryscriptbridge.h"
 #include "library/libraryview.h"
 #include "mixer/playermanager.h"
 #include "moc_librarycontrol.cpp"
@@ -523,6 +524,11 @@ LibraryControl::LibraryControl(Library* pLibrary)
             &ControlPushButton::valueChanged,
             this,
             &LibraryControl::slotLoadSelectedIntoFirstStopped);
+
+    connect(&LibraryScriptBridge::instance(),
+        &LibraryScriptBridge::searchQueryChanged,
+        this,
+        &LibraryControl::slotSetSearchQuery);
 
 #ifdef MIXXX_USE_QML
     if (!CmdlineArgs::Instance().isQml())
@@ -1216,4 +1222,11 @@ void LibraryControl::slotTrackColorNext(double v) {
     if (pTrackTableView) {
         pTrackTableView->assignNextTrackColor();
     }
+}
+
+void LibraryControl::slotSetSearchQuery(const QString& query) {
+    if (m_pSearchbox) {
+        m_pSearchbox->setCurrentText(query);
+    }
+    m_pLibrary->search(query);
 }

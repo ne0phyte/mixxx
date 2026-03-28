@@ -1,5 +1,6 @@
 #pragma once
 
+#include <qhashfunctions.h>
 #include <QFont>
 #include <QList>
 #include <QObject>
@@ -144,6 +145,7 @@ class Library: public QObject {
     void showTrackModel(QAbstractItemModel* model, bool restoreState = true);
     void switchToView(const QString& view);
     void loadTrack(TrackPointer pTrack);
+
 #ifdef __STEM__
     void loadTrackToPlayer(TrackPointer pTrack,
             const QString& group,
